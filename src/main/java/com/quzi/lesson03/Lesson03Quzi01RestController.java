@@ -27,9 +27,17 @@ public class Lesson03Quzi01RestController {
 	// input(response): rent_price(필수)
 	// output(response): List<RealEstate>
 	@RequestMapping("/lesson03/quiz01/2")
-	public RealEstate quzi01_2(
+	public List<RealEstate> quzi01_2(
 			@RequestParam("rent_price") int rentPrice) {
 		return realEstateBO.getRealEstateListByRentPrice(rentPrice);
+	}
+	
+	// http://localhost:8080/lesson03/quiz01/3?area=90&price=130000
+	@RequestMapping("/lesson03/quiz01/3")
+	public List<RealEstate> quzi01_3(
+			@RequestParam("area") int area,
+			@RequestParam(value = "price", required = true) int price) {
+		return realEstateBO.getRealEstateListByAreaPrice(area, price);
 	}
 	
 }
