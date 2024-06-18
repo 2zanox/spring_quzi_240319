@@ -11,7 +11,7 @@ import com.quzi.lesson03.bo.RealEstateBO;
 import com.quzi.lesson03.domain.RealEstate;
 
 @RestController
-public class Lesson03Quzi01RestController {
+public class Lesson03Quiz01RestController {
 	
 	@Autowired
 	private RealEstateBO realEstateBO;

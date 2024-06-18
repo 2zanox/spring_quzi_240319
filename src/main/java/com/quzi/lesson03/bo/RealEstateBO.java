@@ -49,4 +49,19 @@ public class RealEstateBO {
 		return realEstateMapper.insertRealEstatefield(realtorId, address, area, type, price, rentPrice);
 	}
 	
+	// quzi03
+	
+	// input: id, type, price
+	// output: 성공한 행의 개수(int)
+	public int updateRealEstateById(int id, String type, int price) {
+		return realEstateMapper.updateRealEstateById(id, type, price);
+	}
+	
+	// quzi04
+	// input: id
+	// output: void => X
+	public void deleteRealEstateById(int id) {
+		realEstateMapper.deleteRealEstateById(id);
+	}
+	
 }

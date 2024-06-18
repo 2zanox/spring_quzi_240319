@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequestMapping("/lesson01/quiz01")
 @Controller
-public class Lesson01Quzi01Controller {
+public class Lesson01Quiz01Controller {
 	
 	// http://localhost:8080/lesson01/quiz01/1
 	@ResponseBody

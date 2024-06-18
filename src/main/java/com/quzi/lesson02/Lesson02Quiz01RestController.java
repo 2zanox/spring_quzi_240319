@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.quzi.lesson02.bo.StoreBO;
 
 @RestController
-public class Lesson02Quzi01RestController {
+public class Lesson02Quiz01RestController {
 	
 	@Autowired
 	private StoreBO storeBO;

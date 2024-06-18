@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/lesson01/quiz02")
 @RestController
-public class Lesson01Quzi02RestController {
+public class Lesson01Quiz02RestController {
 	
 	//  http://localhost:8080/lesson01/quiz02/1
 	@RequestMapping("/1")

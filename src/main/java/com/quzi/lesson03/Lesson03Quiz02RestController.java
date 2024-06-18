@@ -10,7 +10,7 @@ import com.quzi.lesson03.domain.RealEstate;
 
 @RequestMapping("/lesson03/quiz02")
 @RestController
-public class Lesson03Quzi02RestController {
+public class Lesson03Quiz02RestController {
 	
 	@Autowired
 	private RealEstateBO realEstateBO;
