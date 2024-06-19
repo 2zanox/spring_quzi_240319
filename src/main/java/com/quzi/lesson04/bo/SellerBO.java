@@ -13,12 +13,22 @@ public class SellerBO {
 	private SellerMapper sellserMapper;
 	
 	// quiz01
+	// input: 파라미터들(nickname, profileImageUrl, temperature)
+	// output: X
 	public void addSeller(String nickname, String profileImageUrl, double temperature) {
 		sellserMapper.insertSeller(nickname, profileImageUrl, temperature);
 	}
+		
+	// input: X
+	// output: Seller(채워져 있거나 null)
+	public Seller getLatestSeller() {
+		return sellserMapper.selectLatestSeller();
+	}
 	
-	public Seller getSellerInfo() {
-		return sellserMapper.selectSellerInfo();
+	// input: id
+	// output: Seller(채워져 있거나 null)
+	public Seller getLatestSellerById(int id) {
+		return sellserMapper.selectLatestSellerById(id);
 	}
 	
 }

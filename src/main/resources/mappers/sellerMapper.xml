@@ -24,7 +24,22 @@
  	</insert>
  	
  	<!-- lesson04 quiz01_2 -->
- 	<select id="selectSellerInfo" resultType="com.quzi.lesson04.domain.Seller">
+ 	<select id="selectLatestSeller" resultType="com.quzi.lesson04.domain.Seller">
+		SELECT
+ 			`id`
+ 			,`nickname`
+			,`profileImageUrl`
+			,`temperature`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`seller`
+		ORDER BY `id` DESC
+		LIMIT 1
+ 	</select>
+ 	
+ 	<!-- lesson04 quiz01_3 -->
+ 	<select id="selectLatestSellerById" parameterType="Integer" resultType="com.quzi.lesson04.domain.Seller">
  		SELECT
  			`id`
  			,`nickname`
@@ -34,6 +49,8 @@
 			,`updatedAt`
 		FROM
 			`seller`
+		WHERE
+			`id` = #{id}		
 		ORDER BY `id` DESC
 		LIMIT 1
  	</select>
