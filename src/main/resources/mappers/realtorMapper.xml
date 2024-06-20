@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.quzi.lesson04.mapper.RealtorMapper">
+ 	<!-- lesson04 quiz02 insert -->
+ 	<insert id="insertRealtor" parameterType="com.quzi.lesson04.domain.Realtor"
+ 	useGeneratedKeys="true" keyProperty="id">	
+ 		INSERT INTO `realtor`
+ 		(
+ 			`office`
+			, `phoneNumber`
+			, `address`
+			, `grade`
+			, `createdAt`
+			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{office}
+ 			, #{phoneNumber}
+ 			, #{address}
+ 			, #{grade}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<!-- lesson04 quiz02 select -->
+ 	<select id="selectRealtorById" parameterType="int" resultType="com.quzi.lesson04.domain.Realtor">
+ 		SELECT
+ 			 `id`
+ 			, `office`
+			, `phoneNumber`
+			, `address`
+			, `grade`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`realtor`
+		WHERE
+			`id` = #{id}
+ 	</select>
+ </mapper>
