@@ -10,7 +10,7 @@
 </head>
 <body>
 		<div class="container">
-		<h1 class="text-center">즐겨찾기 목록</h1>
+		<h1>즐겨찾기 목록</h1>
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -20,10 +20,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="mark : ${BookmarkList}">
-					<td th:text="${mark.id}"></td>
-					<td th:text="${mark.name}"></td>
-					<td th:text="${mark.url}"><a th:href="${mark.url}"></a></td>
+				<tr th:each="bookmark : ${BookmarkList}">
+					<td th:text="${bookmark.id}"></td>
+					<td th:text="${bookmark.name}"></td>
+					<td>
+						<a th:href="${bookmark.url}" th:text="${bookmark.url}"></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

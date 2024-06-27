@@ -10,7 +10,7 @@ import com.quzi.lesson06.domain.Bookmark;
 @Mapper
 public interface BookmarkMapper {
 	
-	public int insertBookmark(
+	public void insertBookmark(
 			@Param("name") String name, 
 			@Param("url") String url);
 	

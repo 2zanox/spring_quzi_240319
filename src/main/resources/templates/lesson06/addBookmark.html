@@ -11,31 +11,45 @@
 <body>
 	<div class="container">
 		<h1>즐겨찾기 추가</h1>
-		<form method="post" action="/lesson06/add-bookmark">
-			<label for="name" class="col-12">제목: <input type="text" class="form-control" name="name" id="name"></label><br>
-			<label for="url" class="col-12">주소: <input type="text" class="form-control" name="url" id="url"></label>
-			
-			<div class="mt-3">
-				<input type="button" id="joinBtn" class="btn btn-success col-12" value="추가">
-			</div>
-		</form>
+		
+		<div class="form-group">
+			<label for="title">제목</label>
+			<input type="text" id="name" class="form-control">
+		</div>
+		
+		<div class="form-group">
+			<label for="url">URL 주소</label>
+			<input type="text" id="url" class="form-control col-11">
+		</div>	
+		
+		<button type="button" id="addBtn" class="btn btn-success btn-block">추가</button>
+		
 	</div>
 	
 	<script>
 		$(document).ready(function() {
-			$("#joinBtn").on('click', function() {
+			// 추가버튼
+			$("#addBtn").on('click', function() {
 				//alert("클릭")
 				
+				// validation
 				// 제목
-				let name = $("input[name=name]").val().trim();
-				if (name.length < 1) {
-					alert("제목을 입력해주세요");
+				let name = $("#name").val().trim();
+				if (!name) {
+					alert("사이트명 입력해주세요");
 					return;
 				}				
 				// 주소
 				let url = $("#url").val().trim();
-				if (url == "") {
+				if (!url) {
 					alert("주소를 입력해주세요");
+					return;
+				}
+				
+				// http도 아니고, https도 아니면 => alert
+				if (url.startsWith("http://") == false
+						&& url.startsWith("https://") == false) {
+					alert("주소 형식이 잘못되었습니다.");
 					return;
 				}
 				
@@ -47,22 +61,24 @@
 					, data:{"name":name, "url":url}
 					
 					// response
-					, success:function(data) {
-						//alert(data);
-						if (data == "성공") {
-							location.href = "/lesson06/bookmark-list-view"
+					// callback 함수(response로 오면 이쪽으로 간다.)
+					, success:function(data) { // data: JSON String -> jquery ajax 함수가 parsing => js dictionary
+						// {"code":200, "result":"성공"}
+						//alert(data.result);
+						
+						if (data.result == "성공") { // data.code == 200
+							// location으로(목록 화면으로 이동) 요청은 GET Method로 요청
+							location.href = "/lesson06/bookmark-list-view";
 						}
 					}
 					, error:function(xhr, status, error) {
-						alert(xhr);
-						alert(status);
-						alert(error);
+						alert("데이터를 추가하는데 실패 했습니다.");
 					}
-				});
+				}); // AJAX 끝
 				
-			});
+			}); // addBtn 끝
 			
-		});
+		}); // ready 끝
 	</script>
 </body>
 </html>
