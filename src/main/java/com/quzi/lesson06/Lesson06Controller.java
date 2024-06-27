@@ -62,4 +62,24 @@ public class Lesson06Controller {
 		// 결과 화면
 		return "lesson06/BookmarkList";
 	}
+	
+	// AJAX의 요청 - url 중복확인
+	@ResponseBody
+	@GetMapping("is-duplication-url")
+	public Map<String, Object> isDuplicationUrl(
+			@RequestParam("url") String url) {
+		
+		// DB select
+		boolean isDuplication = bookmarkBO.isDuplicationByUrl(url);
+		
+		// 응답 JSON
+		// {"code":200, "is_duplication":ture}
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("is_duplication", isDuplication);
+		
+		
+		return result;
+	}
+	
 }

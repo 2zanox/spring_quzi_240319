@@ -32,4 +32,14 @@
 		FROM
 		 	`bookmark`
  	</select>
+ 	
+ 	<!-- quiz02 select -->
+ 	<select id="isDuplicationByUrl" parameterType="string" resultType="boolean">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`bookmark`
+ 		WHERE
+ 			`url` = #{url}
+ 	</select>
  </mapper>

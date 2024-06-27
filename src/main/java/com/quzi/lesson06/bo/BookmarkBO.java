@@ -26,4 +26,8 @@ public class BookmarkBO {
 		return bookmarkMapper.selectBookmarkList();
 	}
 	
+	public boolean isDuplicationByUrl(String url) {
+		return bookmarkMapper.isDuplicationByUrl(url);
+	}
+	
 }

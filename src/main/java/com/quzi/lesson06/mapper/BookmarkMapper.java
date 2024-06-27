@@ -10,10 +10,14 @@ import com.quzi.lesson06.domain.Bookmark;
 @Mapper
 public interface BookmarkMapper {
 	
+	// quiz01
 	public void insertBookmark(
 			@Param("name") String name, 
 			@Param("url") String url);
 	
 	public List<Bookmark> selectBookmarkList();
+	
+	// quiz02
+	public boolean isDuplicationByUrl(String url);
 	
 }

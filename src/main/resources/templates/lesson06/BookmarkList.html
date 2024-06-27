@@ -26,9 +26,23 @@
 					<td>
 						<a th:href="${bookmark.url}" th:text="${bookmark.url}"></a>
 					</td>
+					<td>
+						<button id="deleteBtn" class="btn btn-danger">삭제</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+			// 삭제버튼 클릭
+			$("#deleteBtn").on('click', function() {
+				//alert("삭제확인");
+				
+				
+			}); // 삭제버튼 끝			
+		}); // ready 끝
+	</script>
 </body>
 </html>
