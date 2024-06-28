@@ -20,4 +20,10 @@ public interface BookmarkMapper {
 	// quiz02
 	public boolean isDuplicationByUrl(String url);
 	
+	// input: url
+	// output: List<Bookmark>
+	public List<Bookmark> selectBookmarkListByUrl(String url);
+	
+	public int deleteBookmarkById(int id);
+	
 }

@@ -22,10 +22,12 @@
 			
 			<div class="d-flex">
 				<input type="text" id="url" class="form-control col-11">
-				<button type="button" id="urlCheckBtn" class="btn btn-info">중복확인</button>
+				<button type="button" id="duplicationBtn" class="btn btn-info">중복확인</button>
 			</div>
 			
-			<small id="urlStatusArea"></small>
+			<!-- <small id="urlStatusArea"></small> -->
+			<small id="duplicationText" class="text-danger d-none">중복된 URL 입니다.</small>
+			<small id="availableText" class="text-success d-none">저장 가능한 URL 입니다.</small>
 		</div>	
 		
 		<button type="button" id="addBtn" class="btn btn-success btn-block">추가</button>
@@ -84,29 +86,53 @@
 				
 			}); // addBtn 끝
 			
-			$("#urlCheckBtn").on('click', function() {
+			// 중복 확인 버튼
+			$("#duplicationBtn").on('click', function() {
 					//alert("중복확인");
 					
-					$("#urlStatusArea").empty();
+					/* 1)
+					$("#urlStatusArea").empty(); // 자식요소 제거
 					
 					let url = $("#url").val().trim();
 					if (!url) {
 						$("#urlStatusArea").append('<span class="text-danger">주소가 비어있습니다.</span>');
 						return;
 					}
+					*/
+					
+					// 2)
+					let url = $("#url").val().trim();
+					if (!url) {
+						alert("주소를 입력하세요");
+						return;
+					}					
 					
 					// AJAX 중복 확인(DB)
 					$.ajax({
-					// response
-						type:"GET"
+					// request
+						type:"POST"
 						, url:"/lesson06/is-duplication-url"
 						, data:{"url":url}
 					
-					// request
+					// response
 					, success:function(data) {
 						// {"code":200, "is_duplication":ture}
+						
+						/* 1)
 						if (data.is_duplication) {
 							$("#urlStatusArea").append('<span class="text-danger">중복된 주소입니다.</span>');
+						} else {
+							$("#urlStatusArea").append('<span class="text-success">사용가능한 주소입니다.</span>');
+						}
+						*/
+						
+						// 2)
+						if (data.is_duplication) { // 중복
+							$("#duplicationText").removeClass("d-none");
+							$("#availableText").addClass("d-none");
+						} else { // 중복 아님 => 사용가능
+							$("#duplicationText").addClass("d-none");
+							$("#availableText").removeClass("d-none");
 						}
 					}
 					, error:function(error) {

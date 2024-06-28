@@ -42,4 +42,27 @@
  		WHERE
  			`url` = #{url}
  	</select>
+ 	
+ 	<!-- quiz02_1(재활용 하는 방식) select -->
+ 	<select id="selectBookmarkListByUrl" parameterType="string" resultType="com.quzi.lesson06.domain.Bookmark">
+ 		SELECT
+ 			`id`
+			, `name`
+			, `url`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+		 	`bookmark`
+ 		WHERE
+ 			`url` = #{url}
+ 	</select>
+ 	
+ 	<!-- quiz02 delete -->
+ 	<delete id="deleteBookmarkById" parameterType="int">
+ 		DELETE
+ 		FROM
+ 			`bookmark`
+ 		WHERE
+ 			`id` = #{id}
+ 	</delete>
  </mapper>
