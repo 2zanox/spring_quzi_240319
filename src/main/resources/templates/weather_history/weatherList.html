@@ -58,10 +58,10 @@
 						<tr th:each="history : ${WeatherHistoryList}">
 							<td th:text="${#temporals.format(history.date, 'yyyy년 M월 d일')}"></td>
 							<td th:switch="${history.weather}">								
-								<img th:case="'맑음'" src="/img/sunny.jpg" alt="맑음">
-								<img th:case="'구름조금'" src="/img/partlyCloudy.jpg" alt="구름조금">
-								<img th:case="'흐림'" src="/img/cloudy.jpg" alt="흐림">
-								<img th:case="'비'" src="/img/rainy.jpg" alt="비">
+								<img th:case="'맑음'" src="/img/weather_history/sunny.jpg" alt="맑음">
+								<img th:case="'구름조금'" src="/img/weather_history/partlyCloudy.jpg" alt="구름조금">
+								<img th:case="'흐림'" src="/img/weather_history/cloudy.jpg" alt="흐림">
+								<img th:case="'비'" src="/img/weather_history/rainy.jpg" alt="비">
 								<span th:case="*" th:text="${history.weather}"></span>
 							</td>
 							<td th:text="|${history.temperatures}°C|"></td>
