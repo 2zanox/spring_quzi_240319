@@ -37,6 +37,7 @@
 			, `day`
 			, `headcount`
 			, `phoneNumber`
+			, `state`
 			, `createdAt`
 			, `updatedAt`
  		)
@@ -47,8 +48,29 @@
  			, #{day}
  			, #{headcount}
  			, #{phoneNumber}
+ 			, '대기중'
  			, NOW()
  			, NOW()
  		)		
  	</insert>
+ 	
+ 	<!-- select 예약명단 조회 -->
+ 	<select id="checkBookingByNamephoneNumber" parameterType="map" resultType="boolean">
+ 		 SELECT
+ 			`id`
+			, `name`
+			, `headcount`
+			, `day`
+			, `date`
+			, `phoneNumber`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`booking`
+		WHERE
+		 	`name` = #{name}
+		 AND
+		 	`phoneNumber` = #{phoneNumber}
+ 	</select>
  </mapper>

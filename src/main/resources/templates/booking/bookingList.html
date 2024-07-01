@@ -21,7 +21,7 @@
 		<nav>
 			<ul class="nav nav-fill font-weight-bold">
 				<li class="nav-item">
-					<a href="#" class="nav-link text-white font-weight-bold" th:text="'팬션소개'"></a>
+					<a href="/templates/booking/check-booking-view" class="nav-link text-white font-weight-bold" th:text="'팬션소개'"></a>
 				</li>
 	            <li class="nav-item">
 	            	<a href="#" class="nav-link text-white font-weight-bold" th:text="'객실보기'"></a>
@@ -57,9 +57,15 @@
 						<td th:text="${booking.day}"></td>
 						<td th:text="${booking.headcount}"></td>
 						<td th:text="${booking.phoneNumber}"></td>
-						<td th:switch="${booking.state}">
+						<!-- <td th:switch="${booking.state}">
 							<span th:case="'대기중'" class="text-info" th:text="${booking.state}"></span>
 							<span th:case="'확정'" class="text-success" th:text="${booking.state}"></span>
+							<span th:case="'취소'" class="text-danger" th:text="${booking.state}"></span>
+						</td> -->
+						<td>
+							<span th:if="${booking.state == '대기중'}" class="text-info" th:text="${booking.state}"></span>
+							<span th:if="${booking.state == '확정'}" class="text-success" th:text="${booking.state}"></span>
+							<span th:if="${booking.state == '취소'}" class="text-danger" th:text="${booking.state}"></span>
 						</td>
 						<td>
 							<button type="button" class="del-btn btn btn-danger" th:data-booking-id="${booking.id}">삭제</button>
@@ -95,16 +101,19 @@
 					// response
 					, success:function(data) {
 						// 성공
+						// {"code":200, "result":"성공"}
 						if (data.code == 200) {
+							alert("삭제가 되었습니다.");
 							location.reload(true);
 						} else if (data.code == 500) {
 							// 로직상 실패
+							// {"code":500, "error_massage":"에러의 원인"}
 							alert(data.error_massage);
 						}
 					}
 					// 실패 (코드오류)
 					, error:function(error) {
-						alert("삭제하는데 실패했습니다.");
+						alert("삭제하는데 실패했습니다. 관리자에게 문의해주세요");
 					}
 					
 				}); // ajax 끝

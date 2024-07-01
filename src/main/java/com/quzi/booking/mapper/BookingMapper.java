@@ -22,5 +22,7 @@ public interface BookingMapper {
 			@Param("headcount") int headcount, 
 			@Param("phoneNumber") String phoneNumber);
 	
-	
+	public boolean checkBookingByNamephoneNumber(
+			@Param("name") String name, 
+			@Param("phoneNumber") String phoneNumber);
 }

@@ -18,7 +18,7 @@
 	    <nav>
 	        <ul class="nav nav-fill">
 	            <li class="nav-item">
-	            	<a href="#" class="nav-link text-white font-weight-bold">팬션소개</a>
+	            	<a href="/templates/booking/check-booking-view" class="nav-link text-white font-weight-bold">팬션소개</a>
 	            </li>
 	            <li class="nav-item">
 	            	<a href="#" class="nav-link text-white font-weight-bold">객실보기</a>
@@ -71,5 +71,52 @@
 	        </small>
 	    </footer>
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+			// 체크버튼 확인
+			$("#checkBookingBtn").on('click', function() {
+				//alert("체크확인");
+				let name = $("#name").val().trim();
+				let phoneNumber = $("#phoneNumber").val().trim();
+				if (!name) {
+					alert("이름을 입력해주세요");
+					return;
+				}
+				if (!phoneNumber) {
+					alert("전화번호를 입력해주세요");
+					return;
+				}
+				
+				console.log(name);
+				console.log(phoneNumber);
+				
+				// AJAX 요청
+				$.ajax({
+					// request
+					type:"POST"
+					, url:"/templates/booking/check-booking"
+					, data:{"name":name, "phoneNumber":phoneNumber}
+					
+					// response
+					// 성공
+					// {"code":200, "result":"성공"}
+					, success:function(data) {
+						if (data.code == 200) {
+							alert("조회에 성공했습니다.");
+						} else if (data.code == 500) {
+							arler("예약 내역이 없습니다");
+						}
+					}
+					// 실패
+					, error:function(error) {
+						alert("조회하는데 실패했습니다.");
+					}
+					
+				}); // ajax 요청 끝
+				
+			});	// 체크버튼 확인 끝	
+		}); // ready 끝
+	</script>
 </body>
 </html>

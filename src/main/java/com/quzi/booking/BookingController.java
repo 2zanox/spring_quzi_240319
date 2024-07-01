@@ -38,22 +38,7 @@ public class BookingController {
 		return "booking/bookingList";
 	}
 	
-	// 예약하기 화면
-	// http://localhost:8080/templates/booking/make-booking-view
-	@GetMapping("/make-booking-view")
-	public String makeBookingView() {
-		return "booking/makeBooking";
-	}
-
-	// 예약확인 화면
-	// http://localhost:8080/templates/booking/check-booking-view
-	@GetMapping("/check-booking-view")
-	public String checkBookingView() {
-		return "booking/checkBooking";
-	}
-	
 	// 삭제 화면
-	// http://localhost:8080/templates/booking/delete-booking?id=3
 	// AJAX 요청 - id로 삭제
 	@ResponseBody
 	@DeleteMapping("/delete-booking")
@@ -70,19 +55,26 @@ public class BookingController {
 			result.put("result", "성공");
 		} else {
 			result.put("code", 500);
-			result.put("error_message", "삭제할 항목이 존재하지 않습니다.");
+			result.put("error_message", "삭제할 데이터가 없습니다.");
 		}
 		
 		return result;
 	}
 	
+	// 예약하는 화면
+	// http://localhost:8080/templates/booking/make-booking-view
+	@GetMapping("/make-booking-view")
+	public String makeBookingView() {
+		return "booking/makeBooking";
+	}
+	
 	// 예약하는 AJAX
 	// AJAX 요청 - insert
 	@ResponseBody
-	@PostMapping("/add-booking")
-	public Map<String, Object> addBooking(
+	@PostMapping("/make-booking")
+	public Map<String, Object> makeBooking(
 			@RequestParam("name") String name,
-			@RequestParam("date") LocalDate date,
+			@RequestParam("date") LocalDate date, // String도 허용
 			@RequestParam("day") int day,
 			@RequestParam("headcount") int headcount,
 			@RequestParam("phoneNumber") String phoneNumber) {
@@ -97,5 +89,31 @@ public class BookingController {
 				
 		return result;
 	}
+
+	// 예약확인 화면
+	// http://localhost:8080/templates/booking/check-booking-view
+	@GetMapping("/check-booking-view")
+	public String checkBookingView() {
+		return "booking/checkBooking";
+	}
 	
+	// 예약확인 AJAX
+	// AJAX - select
+	@ResponseBody
+	@PostMapping("check-booking")
+	public Map<String, Object> checkBookingByNamephoneNumber(
+			@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber) {
+		
+		// DB select
+		boolean checknamephoneNumber = bookingBO.checkBookingByNamephoneNumber(name, phoneNumber);
+		
+		// 응답값 JSON
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("checknamephoneNumber", checknamephoneNumber);
+				
+		return result;
+	}
+			
 }
