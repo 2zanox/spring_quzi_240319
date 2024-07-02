@@ -2,6 +2,9 @@ package com.quzi.lesson06.domain;
 
 import java.time.LocalDateTime;
 
+import lombok.Data;
+
+@Data
 public class Bookmark {
 	
 	// 필드
