@@ -99,13 +99,20 @@
 					, data:{"name":name, "phoneNumber":phoneNumber}
 					
 					// response
-					// 성공
-					// {"code":200, "result":"성공"}
+					// 성공										
 					, success:function(data) {
-						if (data.code == 200) {
-							alert("조회에 성공했습니다.");
-						} else if (data.code == 500) {
-							arler("예약 내역이 없습니다");
+						if (data.code == 500) {
+							// 예약 없음
+							// {"code":500, "error_massage":"예약 내역이 없습니다."}
+							alert(data.error_massage);
+						} else if (data.code == 200) {
+							// 성공
+							// {"code":200, "result":{"id":3, "name":"너구리"....}}
+							alert("이름: " + data.result.name
+									+ "\n날짜: " + data.result.date
+									+ "\n일수: " + data.result.day
+									+ "\n인원: " + data.result.headcount
+									+ "\n상태: " + data.result.state);
 						}
 					}
 					// 실패

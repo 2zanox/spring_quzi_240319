@@ -3,6 +3,9 @@ package com.quzi.booking.domain;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import lombok.Data;
+
+@Data
 public class Booking {
 	
 	// 필드

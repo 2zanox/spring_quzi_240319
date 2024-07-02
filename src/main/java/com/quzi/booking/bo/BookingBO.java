@@ -41,9 +41,12 @@ public class BookingBO {
 	
 	// select 예약확인 조회
 	// input: name, phoneNumber
-	// output: 
-	public boolean checkBookingByNamephoneNumber(String name, String phoneNumber) {
-		return bookingMapper.checkBookingByNamephoneNumber(name, phoneNumber);
+	// output: booking(최신) or null
+	public Booking getLatestBookingByNamePhoneNumber(String name, String phoneNumber) {
+		// 없을 때: []	있을 때: [booking1, booking2, booking3....]
+		List<Booking> bookingList = bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber);
+		
+		return bookingList.isEmpty() ? null :bookingList.get(bookingList.size() -1);
 	}
 	
 }

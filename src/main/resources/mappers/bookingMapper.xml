@@ -55,7 +55,8 @@
  	</insert>
  	
  	<!-- select 예약명단 조회 -->
- 	<select id="checkBookingByNamephoneNumber" parameterType="map" resultType="boolean">
+ 	<select id="selectBookingListByNamePhoneNumber" parameterType="map"
+ 	 resultType="com.quzi.booking.domain.Booking">
  		 SELECT
  			`id`
 			, `name`
