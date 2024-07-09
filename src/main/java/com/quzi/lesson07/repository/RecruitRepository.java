@@ -28,14 +28,14 @@ public interface RecruitRepository extends JpaRepository<RecruitEntity, Integer>
 	// quiz02_7
 	// native query
 	@Query(value = "select * from `recruit` "
-			+ "where `deadline` > :deadline"
+			+ "where `deadline` > :deadline "
 			+ "and `salary` >= :salary "
-			+ "and `type` = :type"
+			+ "and `type` = :type "
 			+ "order by `salary` desc"
 			, nativeQuery = true)
 	public List<RecruitEntity> findByDeadlineAndSalaryAndType(
-			@Param("deadline") String deadline, 
-			@Param("salary") int salary, 
+			@Param("deadline") String deadline,
+			@Param("salary") int salary,
 			@Param("type") String type);
 	
 }
